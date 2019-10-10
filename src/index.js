@@ -6,7 +6,7 @@ module.exports = function zeros(expr) {
   let numbers = 0;
 
   for(let i = 0; i < expr.length; i++){
-
+    //добовляем цифры из строки в переменную получая при этом конечные числа
     if(isNaN(parseInt(expr[i])) == false ){
       numbersOne += expr[i];
     } else {
@@ -14,6 +14,8 @@ module.exports = function zeros(expr) {
       numbersOne = parseInt(numbersOne);
       if (numbersOne % 2 == 0)
         evenNumbers++;
+      
+      //проверяем надо ли нам находить ! или !!
       if (expr[i] == '!' && expr[i+1] != '!'){
         while(numbersOne > 0){
           if (numbersOne % 5 == 0 )
@@ -23,6 +25,7 @@ module.exports = function zeros(expr) {
           numbersOne--;
         }
       }  
+
       if (expr[i] == '!' && expr[i+1] == '!'){
         while(numbersOne > 0){
           if (numbersOne % 5 == 0)
@@ -32,6 +35,8 @@ module.exports = function zeros(expr) {
           numbersOne -= 2;
         }
       }
+      
+      //если * то обрезаем строку 
       if (expr[i] == '*') {
         expr = expr.slice(i+1);
         i = -1;
@@ -44,6 +49,7 @@ module.exports = function zeros(expr) {
       numbersOne = '';
     } 
   }
+  //если чисел несколько и они нечетные
   if (evenNumbers == 0 && numbers > 2)
     return 0;
   return zero;
